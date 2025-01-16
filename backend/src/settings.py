@@ -75,15 +75,15 @@ WSGI_APPLICATION = 'src.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ReclutalentDB',
-        'USER': '',
-        'PASSWORD':'',
-        'HOST':'',
-        'PORT':'',
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'Reclutalent',
+    #     'USER': '',
+    #     'PASSWORD':'Nocountry2025',
+    #     'HOST':'https://pvhskzqvjtmyfxijuogr.supabase.co',
+    #     'PORT':'',
     }
-}
+
 
 
 # Password validation
