@@ -1,7 +1,13 @@
+import { Routes, Route } from 'react-router-dom'
+import { MainLayout } from './layout/MainLayout'
+
 function App () {
   return (
     <>
-      <h1>My App</h1>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+        </Route>
+      </Routes>
     </>
   )
 }
