@@ -39,11 +39,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'core.oferta',
     'core.candidato'
+    'core.usuario',
 
     
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+AUTH_USER_MODEL = 'usuario.CustomUser'  # Cambia `your_app_name` por el nombre de tu aplicación
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
