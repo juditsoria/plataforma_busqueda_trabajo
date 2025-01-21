@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'core.oferta',
     'core.candidato',
     'core.usuario',
+    'core.aplicacion',  
 
     
 ]
