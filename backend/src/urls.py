@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+<<<<<<< HEAD
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
@@ -37,4 +38,15 @@ urlpatterns = [
     path('api/usuario/', include('core.usuario.urls')),  # Rutas de la app usuario
     path('api/reclutador/', include('core.reclutador.urls')),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),# Rutas de la app recruiter
+=======
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("Página principal")
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+   path('candidatos/', include('core.candidato.urls')), 
+   path('', home, name='home'),
+>>>>>>> 86c0f31a27b60ef95cd2442968206ade4bd74d49
 ]
