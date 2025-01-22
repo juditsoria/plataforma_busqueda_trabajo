@@ -1,0 +1,11 @@
+[
+  {
+    "name": "Iniciar Seción",
+    "path": "/sign-in",
+    "variant": "secondary"
+  },
+  {
+    "name": "Registrarse",
+    "path": "/sign-up"
+  }
+]

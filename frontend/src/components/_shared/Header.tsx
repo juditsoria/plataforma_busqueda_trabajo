@@ -1,5 +1,6 @@
 import { Button } from '@components/ui/button'
 import { Link } from 'react-router-dom'
+import navigation from './navigation.json'
 
 export function Header () {
   return (
@@ -9,18 +10,15 @@ export function Header () {
           <img src="/logo.webp" alt="Logo ReclutaLent" className='w-[120px] object-contain'/>
         </Link>
         <nav className="flex items-center justify-center gap-4">
-          <ul className='list-none flex gap-4'>
-            <li>
-              <Link to="/sign-in">
-                <Button variant={'secondary'}>Iniciar Sesión</Button>
+          <div className='flex gap-4'>
+            {
+              navigation.length > 0 && navigation.map(({ name, path, variant }, inx) => (
+              <Link key={inx} to={path}>
+                  <Button variant={variant as 'secondary' | 'default' | 'link' | 'destructive' | 'outline' | 'ghost' || 'default'}>{name}</Button>
               </Link>
-            </li>
-            <li>
-              <Link to="/sign-up">
-                <Button>Registrarse</Button>
-              </Link>
-            </li>
-          </ul>
+              ))
+            }
+          </div>
         </nav>
       </div>
     </header>
