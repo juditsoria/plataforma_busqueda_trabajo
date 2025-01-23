@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Profile = () => {
   return (
-    <div className='flex justify-between flex-col gap-4 border-b-2 border-solid border-gray-200 max-w-[300px] bg-accent rounded-xl p-5 drop-shadow-xl'>
+    <div className='flex justify-between flex-col gap-4 border-b-2 border-solid border-gray-200 max-w-[300px] max-h-max bg-accent rounded-xl p-5 drop-shadow-xl'>
       <div className='flex items-center gap-4'>
         <img src={profile.avatar} alt="Avatar" className='w-[75px] h-[76px] object-cover rounded-full' />
         <div>
