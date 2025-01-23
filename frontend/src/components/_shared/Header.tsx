@@ -4,7 +4,7 @@ import navigation from './navigation.json'
 
 export function Header () {
   return (
-    <header className="fixed py-4 top-0 left-0 right-0 bg-accent">
+    <header className="fixed py-4 top-0 left-0 right-0 bg-accent z-10">
       <div className="max-w-[1400px] px-4 mx-auto flex items-center justify-between">
         <Link to="/">
           <img src="/logo.webp" alt="Logo ReclutaLent" className='w-[120px] object-contain'/>
