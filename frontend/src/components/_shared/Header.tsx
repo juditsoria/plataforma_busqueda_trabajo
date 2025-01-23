@@ -5,7 +5,7 @@ import navigation from './navigation.json'
 export function Header () {
   return (
     <header className="fixed p-4 top-0 left-0 right-0 bg-accent">
-      <div className="mx-52 flex items-center justify-between">
+      <div className="max-w-[1400px] mx-auto px-2 flex items-center justify-between">
         <Link to="/">
           <img src="/logo.webp" alt="Logo ReclutaLent" className='w-[120px] object-contain'/>
         </Link>
