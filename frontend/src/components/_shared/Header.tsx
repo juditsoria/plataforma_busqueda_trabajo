@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export function Header () {
   return (
-    <header className="fixed p-4 top-0 left-0 right-0 bg-accent">
+    <header className="fixed p-4 top-0 left-0 right-0 bg-secondary border-b-2 border-accent">
       <div className="mx-52 flex items-center justify-between">
         <Link to="/">
           <img src="/logo.webp" alt="Logo ReclutaLent" className='w-[120px] object-contain'/>
@@ -12,7 +12,7 @@ export function Header () {
           <ul className='list-none flex gap-4'>
             <li>
               <Link to="/sign-in">
-                <Button variant={'secondary'}>Iniciar Sesión</Button>
+                <Button variant={'outline'} className=''>Iniciar Sesión</Button>
               </Link>
             </li>
             <li>
