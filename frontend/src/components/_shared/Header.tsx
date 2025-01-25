@@ -32,10 +32,10 @@ export function Header () {
               getRol() === 'candidato'
                 ? <>
                   <Link to='/'>
-                    <Button variant={navigate.pathname === '/' ? 'outline' : 'default'}>Inicio</Button>
+                    <Button variant={navigate.pathname === '/' ? 'default' : 'secondary'}>Inicio</Button>
                   </Link>
                   <Link to='/empleos'>
-                    <Button variant={navigate.pathname === '/empleos' ? 'secondary' : 'default'}>Empleos</Button>
+                    <Button variant={navigate.pathname === '/empleos' ? 'default' : 'secondary'}>Empleos</Button>
                   </Link>
                 </>
                 : navigation.map(({ name, path, variant }, inx) => (
