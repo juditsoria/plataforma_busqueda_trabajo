@@ -1,35 +1,81 @@
 import { Button } from '@components/ui/button'
+import { useState } from 'react';
 import { Link } from 'react-router-dom'
+import { PopoverComponent } from '@components/ui/popover';
+import { HamburgerMenuIcon } from '@radix-ui/react-icons';
+import { Cross1Icon  } from '@radix-ui/react-icons';
 
 export function Header () {
-  return (
-    <header className="fixed p-4 top-0 left-0 right-0 bg-secondary border-b-2 border-accent">
-      <div className="mx-0 sm:mx-52 flex items-center justify-between">
-        <div>
-        <Link to="/sign-up">
-                <Button>Registrarse</Button>
-              </Link>
-        </div>
-        <Link to="/">
-          <img src="/logo.webp" alt="Logo ReclutaLent" className='w-[120px] object-contain'/>
-        </Link>
-        <nav className="hidden sm:flex items-center justify-center gap-4">
-          <ul className='list-none flex gap-4'>
-            <li>
-              <Link to="/sign-in">
-                <Button variant={'outline'} className=''>Iniciar Sesión</Button>
-              </Link>
-            </li>
-            <li>
-              <Link to="/sign-up">
-                <Button>Registrarse</Button>
-              </Link>
-            </li>
-          </ul>
-        </nav>
 
-        {/* ahora necesito provarlo aca popover  */}
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const navItems = [
+    { path: "/sign-in", label: "Iniciar Sesión" },
+    { path: "/sign-up", label: "Registrarse" },
+  ];
+
+  const sidebarEventClick = () => {
+    setMenuOpen(!menuOpen);
+    // alert(`Menu toggled: ${!menuOpen}`); 
+  };
+
+  return (
+    <>
+      <header className="fixed p-4 top-0 left-0 right-0 bg-secondary border-b-2 border-accent z-30">
+        <div className="mx-0 xl:mx-52 flex items-center justify-between">
+          <div className="md:hidden block">
+            <button onClick={sidebarEventClick} className='flex items-center justify-center'>
+            {menuOpen ? (
+                  <Cross1Icon className="mr-2 w-6 h-6" />
+                ) : (
+                  <HamburgerMenuIcon className="mr-2 w-6 h-6" />
+                )}
+                
+            </button>
+          </div>
+          <Link to="/">
+            <img src="/logo.webp" alt="Logo ReclutaLent" className='w-[120px] object-contain'/>
+          </Link>
+          <nav className="hidden md:flex items-center justify-center gap-4">
+            <ul className='list-none flex gap-4'>
+              <li>
+                <Link to="/sign-in">
+                  <Button variant={'outline'} className=''>Iniciar Sesión</Button>
+                </Link>
+              </li>
+              <li>
+                <Link to="/sign-up">
+                  <Button>Registrarse</Button>
+                </Link>
+              </li>
+            </ul>
+          </nav>
+
+          <PopoverComponent
+
+          className="md:hidden block"
+          trigger={<Button variant="outline" size="sm">Empezar</Button>}
+          content={
+            <nav>
+              <ul className="list-none space-y-2 w-40">
+                {navItems.map((item) => (
+                  <li key={item.path} className="hover:bg-primary hover:text-primary-foreground">
+                    <Link to={item.path}>
+                      <p>{item.label}</p>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          }/>
+        </div>
+      </header>
+      <div className={`absolute top-[64px] left-0 right-0 bottom-0 z-20 transition-transform duration-300 ${
+        menuOpen ? 'translate-y-0' : '-translate-y-full'}`}>
+          <div className="h-full bg-secondary p-6">
+            {/* Contenido del sidebar */}
+          </div>
       </div>
-    </header>
+    </>
   )
 }
