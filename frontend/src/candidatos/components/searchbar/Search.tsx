@@ -4,7 +4,7 @@ import { CiSearch } from 'react-icons/ci'
 
 const Search = () => {
   return (
-    <div className="flex w-full items-center space-x-2 p-5">
+    <div className="flex w-full items-center space-x-2 pb-5">
       <Input className='bg-secondary' type="text" placeholder="Buscar Empleo" />
       <Button type="submit"><CiSearch /></Button>
     </div>
