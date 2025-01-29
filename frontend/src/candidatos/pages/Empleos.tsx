@@ -2,6 +2,7 @@ import Main from '../components/_shared/main/Main'
 import Profile from '../components/_shared/profile/Profile'
 import Search from '../components/searchbar/Search'
 import Card from '../components/card/Card'
+import Filter from '../components/filter/Filter'
 
 const Empleos = () => {
   return (
@@ -9,6 +10,7 @@ const Empleos = () => {
       <Profile />
       <Main>
         <Search />
+        <Filter />
         <Card />
         <Card />
         <Card />
