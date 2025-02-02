@@ -40,18 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-   
     'core.oferta',
     'core.candidato',
     'core.usuario',
-<<<<<<< HEAD
     'core.reclutador',
-    'drf_yasg',
-=======
-    'core.aplicacion',  
->>>>>>> 86c0f31a27b60ef95cd2442968206ade4bd74d49
-
-    
+    'drf_yasg',    
 ]
 
 CLOUDINARY_STORAGE = {
