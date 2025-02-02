@@ -1,6 +1,7 @@
 from django.db import models
 from core.reclutador.models import RecruiterProfile
 
+# Create your models here.
 class Oferta(models.Model):
     id_oferta = models.AutoField(primary_key = True)
     descripcion = models.TextField(null = False)
@@ -9,5 +10,5 @@ class Oferta(models.Model):
     ubicacion = models.CharField(max_length = 100)
     id_reclutador = models.ForeignKey(RecruiterProfile, on_delete = models.CASCADE)
     
-def __str__(self):
-    return f'Oferta{self.id_oferta}'
+    def __str__(self):
+        return self.descripcion

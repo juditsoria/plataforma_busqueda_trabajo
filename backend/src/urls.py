@@ -38,9 +38,6 @@ urlpatterns = [
     path('api/reclutador/', include('core.reclutador.urls')),
     path('api/oferta', include('core.oferta.urls')),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),# Rutas de la app recruiter
-    ]
-from django.http import HttpResponse
-
-def home(request):
-    return HttpResponse("Página principal")
-
+    path('candidatos/', include('core.candidato.urls')),
+    path('', include('core.usuario.urls')),  # Añadir esta línea
+]
