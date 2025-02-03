@@ -7,7 +7,7 @@ interface EmpleoProps {
   id: number
   titulo: string
   descripcion: string
-  fecha_publicacion: Date
+  fechaPublicacion: string
   salario: number
   ubicacion: string
 }
@@ -17,7 +17,7 @@ const empleos: EmpleoProps[] = [
     id: 0,
     titulo: 'React Junior Web Development',
     descripcion: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem consectetur fugit rerum nisi animi reiciendis necessitatibus, quia recusandae velit tenetur possimus voluptatem deserunt voluptatum soluta repudiandae numquam, magnam voluptates vel',
-    fecha_publicacion: new Date(),
+    fechaPublicacion: '3/05/2025',
     salario: 5000,
     ubicacion: 'Mexico'
   },
@@ -25,7 +25,7 @@ const empleos: EmpleoProps[] = [
     id: 1,
     titulo: 'Java Developer',
     descripcion: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem consectetur fugit rerum nisi animi reiciendis necessitatibus, quia recusandae velit tenetur possimus voluptatem deserunt voluptatum soluta repudiandae numquam, magnam voluptates vel',
-    fecha_publicacion: new Date(),
+    fechaPublicacion: '10/03/2025',
     salario: 3000,
     ubicacion: 'GDL'
   },
@@ -33,7 +33,7 @@ const empleos: EmpleoProps[] = [
     id: 2,
     titulo: 'React Junior',
     descripcion: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem consectetur fugit rerum nisi animi reiciendis necessitatibus, quia recusandae velit tenetur possimus voluptatem deserunt voluptatum soluta repudiandae numquam, magnam voluptates vel',
-    fecha_publicacion: new Date(),
+    fechaPublicacion: '30/05/2025',
     salario: 1000,
     ubicacion: 'Sonora'
   },
@@ -41,7 +41,7 @@ const empleos: EmpleoProps[] = [
     id: 3,
     titulo: 'C# Developer',
     descripcion: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem consectetur fugit rerum nisi animi reiciendis necessitatibus, quia recusandae velit tenetur possimus voluptatem deserunt voluptatum soluta repudiandae numquam, magnam voluptates vel',
-    fecha_publicacion: new Date(),
+    fechaPublicacion: '15/03/2025',
     salario: 100000,
     ubicacion: 'USD'
   }
@@ -56,13 +56,13 @@ const Empleo = () => {
       id: 0,
       titulo: '',
       descripcion: '',
-      fecha_publicacion: new Date(),
+      fechaPublicacion: '',
       salario: 0,
       ubicacion: ''
     }
   }
 
-  const { id, titulo, ubicacion, salario } = getSingleApplication()
+  const { id, titulo, ubicacion, salario, descripcion, fechaPublicacion } = getSingleApplication()
 
   return (
     <>
@@ -75,7 +75,7 @@ const Empleo = () => {
         </Link>
         <Button>Aplicar Ahora</Button>
       </div>
-      <Card id={id} titulo={titulo} salario={salario} ubicacion={ubicacion} details={false} />
+      <Card id={id} titulo={titulo} salario={salario} ubicacion={ubicacion} details={false} description={descripcion} fechaPublicacion={fechaPublicacion} />
     </>
   )
 }

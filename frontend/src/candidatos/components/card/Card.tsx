@@ -7,12 +7,14 @@ interface Props {
   salario: number
   ubicacion: string
   details?: boolean
+  description?: string
+  fechaPublicacion?: string
 }
 
-const Card = ({ id, titulo, salario, ubicacion, details = true }: Props) => {
+const Card = ({ id, titulo, salario, ubicacion, details = true, description, fechaPublicacion }: Props) => {
   return (
-    <div className="py-2">
-      <div className='flex items-center gap-5 bg-secondary p-3 rounded-lg relative'>
+    <div>
+      <div className='mt-5 flex items-center gap-5 bg-secondary p-3 rounded-lg relative'>
         <img src="https://picsum.photos/200" className="w-[100px] h-[85px] object-cover rounded-sm" />
         <div className="flex flex-col">
           <h3 className='text-lg'>{ titulo }</h3>
@@ -31,6 +33,16 @@ const Card = ({ id, titulo, salario, ubicacion, details = true }: Props) => {
         </div>
         }
       </div>
+      {
+          description &&
+        <div className='bg-secondary rounded-lg mt-5 p-3'>
+            <div className='flex items-center justify-between mb-2 font-bold'>
+              <h2>Acerca del empleo</h2>
+              { fechaPublicacion && <span>{ fechaPublicacion }</span> }
+            </div>
+              {description}
+          </div>
+        }
     </div>
   )
 }
