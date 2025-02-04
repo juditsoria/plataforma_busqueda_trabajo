@@ -36,5 +36,8 @@ Esta es la clase `Candidato`, que define el modelo de base de datos para almacen
     educacion = models.TextField()
     cv = models.FileField(upload_to='cvs/', null=True, blank=True)
     
-    def _str_(self):
-        return self.nombre
+    def __str__(self):
+        return self.experiencia
+    
+    class Meta:
+        db_table = "candidato"

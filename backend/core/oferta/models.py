@@ -13,3 +13,6 @@ class Oferta(models.Model):
     
     def __str__(self):
         return self.descripcion
+    
+    class Meta:
+        db_table = 'oferta'
