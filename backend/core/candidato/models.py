@@ -1,5 +1,5 @@
 from django.db import models
-
+from .models import CustomUser
 
 # Create your models here.
 class Candidato(models.Model):
@@ -30,10 +30,9 @@ Esta es la clase `Candidato`, que define el modelo de base de datos para almacen
    - Debería devolver un campo válido que represente al candidato, como `self.experiencia` o cualquier otro campo identificador.
 
 '''
-    id_candidato = models.AutoField(primary_key=True)
+    usuario = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name="candidato")  
     experiencia = models.TextField()
     educacion = models.TextField()
-    # id_usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE)
     cv = models.FileField(upload_to='cvs/', null=True, blank=True)
     
     def _str_(self):
