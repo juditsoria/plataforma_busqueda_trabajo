@@ -4,6 +4,7 @@ from core.reclutador.models import RecruiterProfile
 # Create your models here.
 class Oferta(models.Model):
     id_oferta = models.AutoField(primary_key = True)
+    titulo = models.CharField(max_length = 100)
     descripcion = models.TextField(null = False)
     fecha_publicacion = models.DateField(auto_now_add = True)
     salario = models.IntegerField(null = True, blank = True)
