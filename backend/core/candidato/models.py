@@ -1,5 +1,6 @@
 from django.db import models
-from .models import CustomUser
+from core.usuario.models import CustomUser  # Importa desde la ruta completa
+
 
 # Create your models here.
 class Candidato(models.Model):
