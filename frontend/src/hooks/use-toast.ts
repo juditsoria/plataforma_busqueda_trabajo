@@ -1,6 +1,4 @@
-'use client'
-
-// Inspired by react-hot-toast library
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import * as React from 'react'
 
 import type {
