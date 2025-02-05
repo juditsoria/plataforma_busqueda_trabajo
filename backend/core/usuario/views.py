@@ -32,18 +32,33 @@ class RegisterView(APIView):
     
 # core/usuario/views.py
 
-class CustomLoginView(LoginView):
-    template_name = 'usuario/login.html'
-    authentication_form = CustomAuthenticationForm
-    redirect_authenticated_user = True
+from django.contrib.auth import authenticate, login, logout
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+from django.views import View
+from .forms import CustomAuthenticationForm
 
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        return HttpResponse("Login exitoso")
+@method_decorator(csrf_exempt, name='dispatch')
+class CustomLoginView(View):
+    def post(self, request, *args, **kwargs):
+        form = CustomAuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = authenticate(
+                request,
+                username=form.cleaned_data['username'],
+                password=form.cleaned_data['password']
+            )
+            if user is not None:
+                login(request, user)
+                return JsonResponse({"message": "Login exitoso", "user": user.email}, status=200)
+            else:
+                return JsonResponse({"error": "Credenciales inválidas"}, status=400)
+        else:
+            return JsonResponse({"error": form.errors}, status=400)
 
-from django.http import HttpResponse
-
+@method_decorator(csrf_exempt, name='dispatch')
 @login_required
 def logout_view(request):
     logout(request)
-    return HttpResponse("Logout exitoso")
+    return JsonResponse({"message": "Logout exitoso"}, status=200)

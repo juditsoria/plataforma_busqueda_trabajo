@@ -29,6 +29,10 @@ DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8000',
+    # Añade aquí otros orígenes de confianza si es necesario
+]
 
 # Application definition
 
