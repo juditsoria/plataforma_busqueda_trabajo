@@ -1,9 +1,18 @@
-import { PolarArea } from 'react-chartjs-2'
-import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale } from 'chart.js'
+import { PolarArea } from 'react-chartjs-2';
+import { 
+  Chart as ChartJS, 
+  Title, 
+  Tooltip, 
+  Legend, 
+  ArcElement, 
+  CategoryScale, 
+  LinearScale, 
+  RadialLinearScale // 🔹 Agregar esto
+} from 'chart.js';
 
-ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale)
+ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale, RadialLinearScale); // 🔹 Asegurarse de registrarlo
 
-export function PolarChart () {
+export function PolarChart() {
   const data = {
     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
     datasets: [
@@ -14,7 +23,7 @@ export function PolarChart () {
         backgroundColor: 'rgba(143, 151, 30, 0.2)'
       }
     ]
-  }
+  };
 
   const options = {
     responsive: true,
@@ -27,7 +36,7 @@ export function PolarChart () {
         text: 'Polar Area Chart Example'
       }
     }
-  }
+  };
 
-  return <PolarArea data={data} options={options} />
+  return <PolarArea data={data} options={options} />;
 }

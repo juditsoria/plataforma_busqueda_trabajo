@@ -14,7 +14,7 @@ export function Header () {
   return (
     <>
       <header className="py-4 bg-secondary border-b-2 border-accent z-30">
-        <div className="mx-0 xl:mx-52 flex items-center justify-between">
+        <div className="mx-16 flex items-center justify-between">
           <div className="md:hidden block">
             <button onClick={sidebarEventClick} className="flex items-center justify-center">
               {menuOpen ? (
