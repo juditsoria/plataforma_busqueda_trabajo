@@ -1,13 +1,14 @@
 import { Button } from '@components/ui/button'
 import { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { PopoverComponent } from '@components/ui/popover';
 import { HamburgerMenuIcon } from '@radix-ui/react-icons';
 import { Cross1Icon  } from '@radix-ui/react-icons';
+import navigation from './navigation.json'
 
 export function Header () {
-
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useLocation()
 
   const navItems = [
     { path: "/sign-in", label: "Iniciar Sesión" },
@@ -18,6 +19,21 @@ export function Header () {
     setMenuOpen(!menuOpen);
     // alert(`Menu toggled: ${!menuOpen}`); 
   };
+
+  const getRol = () => {
+   const role = localStorage.getItem('role')
+
+    switch (role) {
+      case 'admin':
+        return 'admin'
+      case 'candidato':
+        return 'candidato'
+      case 'reclutador':
+        return 'reclutador'
+      default:
+        return 'user'
+    }
+  }
 
   return (
     <>
@@ -49,6 +65,23 @@ export function Header () {
                 </Link>
               </li>
             </ul>
+            
+            {
+              getRol() === 'candidato'
+                ? <>
+                  <Link to='/'>
+                    <Button variant={navigate.pathname === '/' ? 'default' : 'secondary'}>Inicio</Button>
+                  </Link>
+                  <Link to='/empleos'>
+                    <Button variant={navigate.pathname === '/empleos' ? 'default' : 'secondary'}>Empleos</Button>
+                  </Link>
+                </>
+                : navigation.map(({ name, path, variant }, inx) => (
+                <Link key={inx} to={path}>
+                    <Button variant={variant as 'secondary' | 'default' | 'link' | 'destructive' | 'outline' | 'ghost' || 'default'}>{name}</Button>
+                </Link>
+                ))
+            }
           </nav>
 
           <PopoverComponent
