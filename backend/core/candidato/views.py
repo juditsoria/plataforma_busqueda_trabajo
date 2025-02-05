@@ -1,9 +1,5 @@
 from django.shortcuts import render
-
-# Create your views here.
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Candidato
-from django.http import JsonResponse
 from .serializers import CandidatoSerializer
 from rest_framework import generics, permissions
 

@@ -39,5 +39,6 @@ urlpatterns = [
     path('api/oferta', include('core.oferta.urls')),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),# Rutas de la app recruiter
     path('candidatos/', include('core.candidato.urls')),
+    path('aplicaciones/', include('core.aplicacion.urls')),
     path('', include('core.usuario.urls')),  # Añadir esta línea
 ]
