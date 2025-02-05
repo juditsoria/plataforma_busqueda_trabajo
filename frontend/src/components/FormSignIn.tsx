@@ -18,7 +18,7 @@ const formSchema = z.object({
   password: z.string()
 })
 
-export function FormSignIn() {
+export function FormSignIn () {
   const { onSubmit, isLoading } = useAuth()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

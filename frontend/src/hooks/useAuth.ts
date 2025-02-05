@@ -3,7 +3,7 @@ import { useToast } from '@/hooks/use-toast'
 import api from '@/lib/api'
 import { useState } from 'react'
 
-export function useAuth() {
+export function useAuth () {
   const [isLoading, setIsLoading] = useState(false)
   const { toast } = useToast()
   const navigate = useNavigate()
@@ -11,15 +11,16 @@ export function useAuth() {
   const onSubmit = async (values: { email: string, password: string }) => {
     try {
       setIsLoading(true)
-      console.log(values) 
+      // console.log(values)
 
-      const response = await api.post('/login', values)
+      const response = await api.post('/login/', values)
+      console.log('Respuesta de :', response.data)
       const { token } = response.data
 
       localStorage.setItem('token', token)
 
       toast({ description: '¡Inicio de sesión exitoso!' })
-      navigate('/admin')
+      navigate('/admin/')
     } catch (error) {
       toast({
         title: '¡Error!',

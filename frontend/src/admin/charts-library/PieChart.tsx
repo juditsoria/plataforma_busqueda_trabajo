@@ -1,20 +1,20 @@
-import { Doughnut } from 'react-chartjs-2'
+import { Pie } from 'react-chartjs-2'
 import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale } from 'chart.js'
 
 ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale)
 
-export function DoughnutChart () {
+export function PieChart () {
   const data = {
-    labels: ['Red', 'Blue', 'Yellow'],
+    labels: ['Ofertas', 'Reclutadores', 'Candidatos'],
     datasets: [
       {
-        label: 'My First Dataset',
+        label: 'Cantidad',
         data: [300, 50, 100],
-        borderColor: 'rgb(143, 151, 30)',
+        borderColor: 'transparent',
         backgroundColor: [
-          'rgba(143, 151, 30, 0.2)',
-          'rgba(143, 151, 30, 0.2)',
-          'rgba(143, 151, 30, 0.2)'
+          'rgba(1, 80, 105, 0.7)',
+          'rgba(43, 105, 144, 0.7)',
+          'rgba(198, 166, 0, 0.7)'
         ]
       }
     ]
@@ -28,10 +28,10 @@ export function DoughnutChart () {
       },
       title: {
         display: true,
-        text: 'Doughnut Chart Example'
+        text: 'Distribución de Ofertas, Reclutadores y Candidatos'
       }
     }
   }
 
-  return <Doughnut data={data} options={options} />
+  return <Pie data={data} options={options} />
 }

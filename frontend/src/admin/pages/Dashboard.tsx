@@ -1,6 +1,6 @@
-import { DoughnutChart } from '@/admin/plugins/DoughnutChart'
-import { PieChart } from '@/admin/plugins/PieChart'
-import { PolarChart } from '@/admin/plugins/PolarChart'
+import { DoughnutChart } from '@/admin/charts-library/DoughnutChart'
+import { PieChart } from '@/admin/charts-library/PieChart'
+import { PolarChart } from '@/admin/charts-library/PolarChart'
 
 export function Dashboard () {
   return (

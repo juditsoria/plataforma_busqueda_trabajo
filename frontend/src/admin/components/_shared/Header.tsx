@@ -1,14 +1,27 @@
 import { Button } from '@components/ui/button'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { HamburgerMenuIcon, Cross1Icon } from '@radix-ui/react-icons'
+import api from '@/lib/api'
 
 export function Header () {
   const [menuOpen, setMenuOpen] = useState(false)
+  const navigate = useNavigate()
 
   const sidebarEventClick = () => {
     setMenuOpen(!menuOpen)
-    // alert(`Menu toggled: ${!menuOpen}`);
+  }
+
+  const handleLogout = async () => {
+    try {
+      await api.post('/logout/')
+
+      localStorage.removeItem('token')
+
+      navigate('/')
+    } catch (error) {
+      console.error('Error al cerrar sesión', error)
+    }
   }
 
   return (
@@ -34,15 +47,12 @@ export function Header () {
           <nav className="hidden md:flex items-center justify-center gap-4">
             <ul className="list-none flex gap-4">
               <li>
-                <Link to="/">
-                  <Button variant={'outline'} className="">
-                    Cerrar Sesión
-                  </Button>
-                </Link>
+                <Button variant={'outline'} onClick={handleLogout}>
+                  Cerrar Sesión
+                </Button>
               </li>
             </ul>
           </nav>
-
         </div>
       </header>
     </>
