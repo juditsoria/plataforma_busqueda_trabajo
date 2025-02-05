@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from rest_framework.authtoken.views import obtain_auth_token
+
 
 
 schema_view = get_schema_view(
@@ -41,4 +43,5 @@ urlpatterns = [
     path('candidatos/', include('core.candidato.urls')),
     path('aplicaciones/', include('core.aplicacion.urls')),
     path('', include('core.usuario.urls')),  # Añadir esta línea
+    path('api/login/', obtain_auth_token, name="api_login"),
 ]

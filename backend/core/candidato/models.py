@@ -9,8 +9,8 @@ class Candidato(models.Model):
     educacion = models.TextField()
     cv = models.FileField(upload_to='cvs/', null=True, blank=True)
     
-    def _str_(self):
+    def __str__(self):
         return self.experiencia
     
-class Meta:
-    db_table = "candidato"
+    class Meta:
+        db_table = "candidato"
