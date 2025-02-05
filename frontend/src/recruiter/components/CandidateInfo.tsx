@@ -7,7 +7,7 @@ interface CandidateInfoProps {
 
 export const CandidateInfo = ({ state }: CandidateInfoProps) => {
   return (
-    <div className='flex items-center gap-5 p-1'>
+    <div className='flex items-center gap-10 p-3'>
       <div className='w-[350px] h-[350px]'>
         <img src="https://www.creative-tim.com/twcomponents/storage/avatars/njkIbPhyZCftc4g9XbMWwVsa7aGVPajYLRXhEeoo.jpg" alt="" className='object-cover w-full h-full rounded-xl' />
       </div>
