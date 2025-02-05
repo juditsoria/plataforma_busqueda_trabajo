@@ -61,7 +61,9 @@ CORS_ALLOW_HEADERS = [
     "x-csrftoken",
     "x-requested-with",
 ]
-
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  # Frontend en React
+]
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
