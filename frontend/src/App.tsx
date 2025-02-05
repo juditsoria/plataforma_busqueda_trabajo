@@ -8,6 +8,7 @@ import CandidateRecruiter from './recruiter/pages/CandidateRecruiter'
 import Home from './candidatos/pages/Home'
 import Empleos from './candidatos/pages/Empleos'
 import EmpleosDetails from './candidatos/pages/EmpleosDetails'
+import { SignUp } from './pages/SignUp'
 
 function App () {
   return (
@@ -19,6 +20,7 @@ function App () {
           <Route path='/empleo/:empleoId' element={<EmpleosDetails />} />
         </Route>
         <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-up" element={<SignUp />} />
         <Route path="/recruiter/home" element={<HomePageRecruiter />} />
         <Route path="/recruiter/offer/:offerId" element={<CandidatesOfferRecruiter />} />
         <Route path="/recruiter/candidate/:candidateId" element={<CandidateRecruiter />} />
