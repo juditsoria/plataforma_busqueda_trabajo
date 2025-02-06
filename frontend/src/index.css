@@ -87,9 +87,3 @@
     border: 3px solid hsl(var(--primary));
   }
 }
-
-@layer utilities {
-  .hover\:bg-primary-transparent {
-    background-color: rgba(var(--primary), 0.17); 
-  }
-}

@@ -10,7 +10,7 @@ export function Profile () {
             <p className="text-gray-500 text-sm">Engineering</p>
           </div>
         </div>
-        <div className="border-t border-accent my-4"></div>
+        <div className="border-t-2 border-primary my-4"></div>
         <div className="">
           <label className="text-md flex justify-center">Admin</label>
         </div>
