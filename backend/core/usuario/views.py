@@ -3,8 +3,13 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
-
+from django.contrib.auth import authenticate, login, logout
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+from django.views import View
 from .forms import CustomAuthenticationForm
+
 
 from rest_framework import generics
 from rest_framework.views import APIView
@@ -30,14 +35,8 @@ class RegisterView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     
-# core/usuario/views.py
 
-from django.contrib.auth import authenticate, login, logout
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
-from django.views import View
-from .forms import CustomAuthenticationForm
+
 
 @method_decorator(csrf_exempt, name='dispatch')
 class CustomLoginView(View):
