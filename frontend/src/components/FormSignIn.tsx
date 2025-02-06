@@ -1,4 +1,4 @@
-import { zodResolver } from '@hookform/resolvers/zod'
+import { useAuth } from '@/hooks/useAuth'
 import { useForm } from 'react-hook-form'
 import { type z } from 'zod'
 import {
@@ -26,7 +26,7 @@ export function FormSignIn () {
       password: ''
     }
   })
-
+  
   async function onSubmit (values: z.infer<typeof formSignInSchema>) {
     try {
       console.log(values)
