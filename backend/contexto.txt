@@ -1,0 +1,8 @@
+
+PostgreSQL con DJango controlador: psycopg2
+Comando para  crear una BDD y usuario: psql(bash)
+
+CREATE DATABASE nombre_de_tu_base;
+GRANT ALL PRIVILEGES ON DATABASE nombre_de_tu_base TO nombre_de_tu_usuario;
+CREATE USER nombre_de_tu_usuario WITH PASSWORD 'tu_contraseña';
+Salir del shell de PostgreSQL: \q
