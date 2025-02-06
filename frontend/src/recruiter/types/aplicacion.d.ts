@@ -1,9 +1,7 @@
-import { type User } from './recruiter'
-
 export interface Aplicacion {
   id_aplicacion: number
-  candidato: User
+  candidato: number
   fecha_aplicacion: string | Date
   estado: string
-  id_oferta: number
+  oferta: number
 }
