@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import api from '@/lib/api'
+import useLocalStorage from '@/hooks/useLocalStorage'
+import { useNavigate } from 'react-router-dom'
 
 interface Oferta {
   id_oferta: number
@@ -13,6 +15,13 @@ interface Oferta {
 export function Ofertas () {
   const [ofertas, setOfertas] = useState<Oferta[]>([])
   const [error, setError] = useState<string | null>(null)
+  const { storedValue } = useLocalStorage<{ email: string, role: string } | null>('user', null)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (storedValue?.role === 'recruiter') navigate('/recruiter/home')
+    else if (storedValue?.role === 'candidate' || storedValue === null) navigate('/')
+  }, [storedValue?.role])
 
   useEffect(() => {
     const fetchOfertas = async () => {
@@ -47,12 +56,12 @@ export function Ofertas () {
 
   return (
     <div>
-      <div className='border-b-2 border-primary mb-4'>
+      <div className='mb-4 border-b-2 border-primary'>
         <label className='text-xl font-semibold'>Ofertas</label>
       </div>
       <ul>
         {ofertas.map((oferta) => (
-          <article key={oferta.id_oferta} className='bg-secondary rounded-lg p-4'>
+          <article key={oferta.id_oferta} className='p-4 rounded-lg bg-secondary'>
             <div className='flex gap-4'>
               <div className='w-6/6'>
                 <div className='flex gap-4'>
@@ -63,7 +72,7 @@ export function Ofertas () {
                       alt="Oferta"
                     />
                   </div>
-                  <div className='w-3/6 flex flex-col'>
+                  <div className='flex flex-col w-3/6'>
                     <h3 className='font-bold'>{oferta.titulo}</h3>
                     <p>{oferta.ubicacion}</p>
                     <p>{oferta.fecha_publicacion}</p>
@@ -72,14 +81,14 @@ export function Ofertas () {
                     <p>{oferta.descripcion}</p>
                   </div>
                 </div>
-                <div className='flex justify-between border-t-2 border-primary pt-4'>
+                <div className='flex justify-between pt-4 border-t-2 border-primary'>
                   <p><strong>Postulados:</strong> 100</p>
                   <p><strong>Salario:</strong> ${oferta.salario}</p>
                 </div>
               </div>
-              <div className='w-1/6 p-2 h-auto bg-accent rounded-lg space-y-2'>
-                <button type='button' className='w-full py-1 bg-primary rounded-lg text-white'>Mostrar</button>
-                <button type='button' className='w-full py-1 bg-red-600 rounded-lg text-white'>Eliminar</button>
+              <div className='w-1/6 h-auto p-2 space-y-2 rounded-lg bg-accent'>
+                <button type='button' className='w-full py-1 text-white rounded-lg bg-primary'>Mostrar</button>
+                <button type='button' className='w-full py-1 text-white bg-red-600 rounded-lg'>Eliminar</button>
               </div>
             </div>
           </article>
