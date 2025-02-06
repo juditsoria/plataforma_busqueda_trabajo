@@ -34,4 +34,7 @@
       "@pages/*": ["./src/pages/*"],
     }
   }
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["src"]
 }
