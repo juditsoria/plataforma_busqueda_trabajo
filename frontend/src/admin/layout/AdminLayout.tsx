@@ -13,7 +13,7 @@ export function AdminLayout () {
         </div>
 
         <div className="col-span-4 col-start-2">
-          <div className="bg-secondary w-full flex-1 h-screen rounded-lg p-4 overflow-y-auto">
+          <div className="bg-accent w-full flex-1 h-screen rounded-lg p-4 overflow-y-auto">
             <Outlet />
           </div>
         </div>

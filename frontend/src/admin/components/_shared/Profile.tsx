@@ -1,6 +1,6 @@
 export function Profile () {
   return (
-    <div className="bg-secondary w-full rounded-lg p-4">
+    <div className="bg-accent w-full rounded-lg p-4">
         <div className="flex items-center gap-4">
           <button type="button" className="w-12 h-12 text-white bg-primary flex items-center justify-center rounded-full text-xl font-bold">
             T

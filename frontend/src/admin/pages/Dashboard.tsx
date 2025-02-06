@@ -5,8 +5,8 @@ import { PolarChart } from '@/admin/charts-library/PolarChart'
 export function Dashboard () {
   return (
     <>
-      <div className='border-b-2 border-primary'>
-        <label className='text-md font-semibold'>Dashboard</label>
+      <div className='border-b-2 border-primary mb-4'>
+        <label className='text-xl font-semibold'>Inicio</label>
       </div>
 
       <div className='grid grid-cols-2 gap-4 py-4'>
