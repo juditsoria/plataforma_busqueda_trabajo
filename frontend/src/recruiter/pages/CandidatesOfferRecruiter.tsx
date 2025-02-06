@@ -8,13 +8,20 @@ import { useEffect, useState } from 'react'
 import { type Offer } from '../types/offer'
 import { OFFER_INITIAL_VALUES } from '../initial-values/offer'
 import { useCandidatesPostulates } from '../hooks/useCandidatosPostulados'
+import useLocalStorage from '@/hooks/useLocalStorage'
 
 export default function CandidatesOfferRecruiter () {
   const { offerId } = useParams()
   const { offers } = useOffers({ idReclutador: 1 })
   const { candidatesPostulates, loadingCandidatesPostulates } = useCandidatesPostulates({ idOferta: Number(offerId) })
   const [offer, setOffer] = useState<Offer>(OFFER_INITIAL_VALUES)
+  const { storedValue } = useLocalStorage<{ email: string, role: string } | null>('user', null)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if (storedValue?.role === 'admin') navigate('/admin')
+    else if (storedValue?.role === 'candidate' || storedValue === null) navigate('/')
+  }, [storedValue?.role])
 
   useEffect(() => {
     const offer = offers.find(offer => offer.id_oferta === Number(offerId))

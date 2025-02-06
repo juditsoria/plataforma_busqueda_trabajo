@@ -3,9 +3,19 @@ import { DrawerOfferInfo } from '../components/DrawerOfferInfo'
 import { HeaderOfferActions } from '../components/HeaderOfferActions'
 import { PiBagFill } from 'react-icons/pi'
 import { useOffers } from '../hooks/useOffers'
+import useLocalStorage from '@/hooks/useLocalStorage'
+import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 export default function HomePageRecruiter () {
   const { offers, setOffers, loadingOffers } = useOffers({ idReclutador: 1 })
+  const { storedValue } = useLocalStorage<{ email: string, role: string } | null>('user', null)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (storedValue?.role === 'admin') navigate('/admin')
+    else if (storedValue?.role === 'candidate' || storedValue === null) navigate('/')
+  }, [storedValue?.role])
 
   return (
     <LayoutRecruiter>
