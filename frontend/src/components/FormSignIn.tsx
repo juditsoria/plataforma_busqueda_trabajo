@@ -1,4 +1,3 @@
-import { useAuth } from '@/hooks/useAuth'
 import { useForm } from 'react-hook-form'
 import { type z } from 'zod'
 import {
@@ -14,6 +13,7 @@ import { useToast } from '@/hooks/use-toast'
 import { FaSignInAlt } from 'react-icons/fa'
 import axios from 'axios'
 import { formSignInSchema } from '@/schemas/authSchema'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 export function FormSignIn () {
   const [isLoading, setIsLoading] = useState(false)
@@ -26,7 +26,7 @@ export function FormSignIn () {
       password: ''
     }
   })
-  
+
   async function onSubmit (values: z.infer<typeof formSignInSchema>) {
     try {
       console.log(values)
