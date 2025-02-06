@@ -67,7 +67,7 @@ CORS_ALLOW_HEADERS = [
     "x-requested-with",
 ]
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
+    "*",
 ]
 
 CLOUDINARY_STORAGE = {
