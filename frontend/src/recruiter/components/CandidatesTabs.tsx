@@ -5,8 +5,13 @@ import {
   TabsTrigger
 } from '@/components/ui/tabs'
 import { CandidateCard } from './CandidateCard'
+import { type Aplicacion } from '../types/aplicacion'
 
-export function CandidatesTabs () {
+interface CandidatesTabsProps {
+  candidatesPostulates: Aplicacion[]
+}
+
+export function CandidatesTabs ({ candidatesPostulates }: CandidatesTabsProps) {
   return (
     <Tabs defaultValue="all" className="w-full">
       <TabsList className="grid grid-cols-4 px-2 mb-3 h-11">
@@ -16,28 +21,52 @@ export function CandidatesTabs () {
         <TabsTrigger value="finalists" className='text-base'>Finalistas</TabsTrigger>
       </TabsList>
       <TabsContent value="all" className='space-y-3'>
-        <CandidateCard state='applied' />
-        <CandidateCard state='viewed' />
-        <CandidateCard state='inProcess' />
-        <CandidateCard state='finalist' />
+        {
+          candidatesPostulates
+            .filter(candidate => candidate.estado === 'applied')
+            .map(candidate => (
+              <CandidateCard
+                key={candidate.id_aplicacion}
+                candidate={candidate}
+              />
+            ))
+        }
       </TabsContent>
       <TabsContent value="cvs" className='space-y-3'>
-        <CandidateCard state='applied' />
-        <CandidateCard state='viewed' />
-        <CandidateCard state='inProcess' />
-        <CandidateCard state='finalist' />
+        {
+          candidatesPostulates
+            .filter(candidate => candidate.estado === 'viewed')
+            .map(candidate => (
+              <CandidateCard
+                key={candidate.id_aplicacion}
+                candidate={candidate}
+              />
+            ))
+        }
       </TabsContent>
       <TabsContent value="inProcess" className='space-y-3'>
-        <CandidateCard state='applied' />
-        <CandidateCard state='viewed' />
-        <CandidateCard state='inProcess' />
-        <CandidateCard state='finalist' />
+        {
+          candidatesPostulates
+            .filter(candidate => candidate.estado === 'inProcess')
+            .map(candidate => (
+              <CandidateCard
+                key={candidate.id_aplicacion}
+                candidate={candidate}
+              />
+            ))
+        }
       </TabsContent>
       <TabsContent value="finalists" className='space-y-3'>
-        <CandidateCard state='applied' />
-        <CandidateCard state='viewed' />
-        <CandidateCard state='inProcess' />
-        <CandidateCard state='finalist' />
+        {
+          candidatesPostulates
+            .filter(candidate => candidate.estado === 'finalist')
+            .map(candidate => (
+              <CandidateCard
+                key={candidate.id_aplicacion}
+                candidate={candidate}
+              />
+            ))
+        }
       </TabsContent>
     </Tabs>
   )

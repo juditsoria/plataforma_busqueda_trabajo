@@ -11,8 +11,8 @@ import {
 import { useState } from 'react'
 import { useToast } from '@/hooks/use-toast'
 import { FaSignInAlt } from 'react-icons/fa'
-import axios from 'axios'
 import { formSignInSchema } from '@/schemas/authSchema'
+import api from '@/lib/api'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 export function FormSignIn () {
@@ -33,9 +33,13 @@ export function FormSignIn () {
 
       setIsLoading(true)
 
-      const response = await axios.post('/login', {
-        email: values.email,
+      const response = await api.post('/usuario/login/', new URLSearchParams({
+        username: values.email,
         password: values.password
+      }).toString(), {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
       })
 
       if (response.status === 200) {

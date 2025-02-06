@@ -4,20 +4,33 @@ import {
   DrawerClose,
   DrawerContent,
   DrawerFooter,
+  DrawerTitle,
   DrawerTrigger
 } from '@/components/ui/drawer'
 import { Offer } from './Offer'
-import { FaPencil } from 'react-icons/fa6'
+import { type Offer as OfferType } from '../types/offer'
+import { ModalEditOfferForm } from './ModalEditForm'
+import { Link } from 'react-router-dom'
+import { useCandidatesPostulates } from '../hooks/useCandidatosPostulados'
 
-export const DrawerOfferInfo = () => {
+interface DrawerOfferInfoProps {
+  offers: OfferType[]
+  offer: OfferType
+  setOffers: any
+}
+
+export const DrawerOfferInfo = ({ offers, offer, setOffers }: DrawerOfferInfoProps) => {
+  const { candidatesPostulates, loadingCandidatesPostulates } = useCandidatesPostulates({ idOferta: Number(offer.id_oferta) })
+
   return (
     <Drawer>
       <DrawerTrigger asChild>
         <button>
-          <Offer />
+          <Offer offer={offer} />
         </button>
       </DrawerTrigger>
       <DrawerContent className='bg-accent'>
+        <DrawerTitle></DrawerTitle>
         <div className="mx-56 my-5 rounded-xl bg-secondary">
           <div className="flex gap-8 p-7 min-h-[320px]">
             <div className='w-[20%]'>
@@ -25,39 +38,40 @@ export const DrawerOfferInfo = () => {
             </div>
             <div className='flex flex-col w-4/5 h-full'>
               <div className='flex items-center justify-between w-full gap-5 mb-1'>
-                <span className='text-3xl font-bold'>Frontend Web Developer</span>
-                <span className='text-xl font-bold'>01/01/2025</span>
+                <span className='text-3xl font-bold'>{offer.titulo}</span>
+                <span className='text-xl font-bold'>{offer.fecha_publicacion.toString()}</span>
               </div>
               <p className='text-lg font-semibold'>ACTUANDO SAS</p>
-              <p className='font-semibold'>BOGOTA DC</p>
+              <p className='font-semibold'>{offer.ubicacion}</p>
               <div className='flex flex-col justify-between h-full'>
-                <p className='my-5 pr-12 h-[110px] overflow-y-auto'>Término fijo Salario a convenir, 4 años de experiencia, Profesional, Especialización/ Maestría, Doctorado.Término fijo Salario a convenir, 4 años de experiencia, Profesional, Especialización/ Maestría, Doctorado.jo Salario a convenir, 4 años de experiencia, Profesional, Especialización/ Maestría, DoctoradoTérmino fijo Salario a convenir, 4 años de experiencia, Profesional, Especialización/ Maestría, Doctorado.Término fijo Salario a convenir, 4 años de experiencia, Profesional.</p>
+                <p className='my-5 pr-12 h-[110px] overflow-y-auto'>{offer.descripcion}</p>
                 <div className='flex items-center justify-between'>
                   <div className='flex items-center justify-center gap-2'>
                     <span className='italic font-semibold'>Postulados:</span>
-                    <span className='px-3 py-1 text-xl italic font-bold bg-white border border-primary rounded-xl'>100</span>
+                    <span className='px-3 py-1 text-xl italic font-bold bg-white border border-primary rounded-xl'>
+                      {loadingCandidatesPostulates ? '...' : candidatesPostulates.length}
+                    </span>
                   </div>
                   <div className='flex items-center justify-center gap-2'>
                     <span className='italic font-semibold'>Salario:</span>
-                    <span className='px-3 py-1 text-xl italic font-bold bg-white border border-primary rounded-xl'>$ 1.000.000</span>
+                    <span className='px-3 py-1 text-xl italic font-bold bg-white border border-primary rounded-xl'>$ {offer.salario}</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <DrawerFooter className='p-6'>
-            <button className='flex items-center justify-center w-full gap-2 px-8 py-3 font-semibold text-white transition-all duration-300 rounded-md bg-primary hover:brightness-110'>
-              <div className='text-2xl'>
-                <FaPencil />
-              </div>
-              Editar oferta
-            </button>
-            <button className='flex items-center justify-center w-full gap-2 px-8 py-3 font-semibold text-white transition-all duration-300 rounded-md bg-primary hover:brightness-110'>
+            <ModalEditOfferForm
+              offers={offers}
+              offer={offer}
+              setOffers={setOffers}
+            />
+            <Link to={`/recruiter/offer/${offer.id_oferta}`} className='flex items-center justify-center w-full gap-2 px-8 py-3 font-semibold text-white transition-all duration-300 rounded-md bg-primary hover:brightness-110'>
               <div className='text-2xl'>
                 <IoPaperPlane />
               </div>
               Visualizar candidatos
-            </button>
+            </Link>
             <DrawerClose asChild>
               <button className='flex items-center justify-center w-full gap-2 px-8 py-3 font-semibold transition-all duration-300 border rounded-md bg-background border-primary hover:bg-gray-100'>
                 Cancelar
