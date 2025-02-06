@@ -22,6 +22,15 @@ interface DrawerOfferInfoProps {
 export const DrawerOfferInfo = ({ offers, offer, setOffers }: DrawerOfferInfoProps) => {
   const { candidatesPostulates, loadingCandidatesPostulates } = useCandidatesPostulates({ idOferta: Number(offer.id_oferta) })
 
+  const formatDate = (isoString: string) => {
+    const date = new Date(isoString)
+    const day = String(date.getUTCDate()).padStart(2, '0')
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0')
+    const year = date.getUTCFullYear()
+
+    return `${day}/${month}/${year}`
+  }
+
   return (
     <Drawer>
       <DrawerTrigger asChild>
@@ -39,7 +48,7 @@ export const DrawerOfferInfo = ({ offers, offer, setOffers }: DrawerOfferInfoPro
             <div className='flex flex-col w-4/5 h-full'>
               <div className='flex items-center justify-between w-full gap-5 mb-1'>
                 <span className='text-3xl font-bold'>{offer.titulo}</span>
-                <span className='text-xl font-bold'>{offer.fecha_publicacion.toString()}</span>
+                <span className='text-xl font-bold'>{formatDate(offer.fecha_publicacion.toString())}</span>
               </div>
               <p className='text-lg font-semibold'>ACTUANDO SAS</p>
               <p className='font-semibold'>{offer.ubicacion}</p>

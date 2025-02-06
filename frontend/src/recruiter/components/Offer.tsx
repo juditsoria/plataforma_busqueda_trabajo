@@ -9,6 +9,15 @@ interface OfferInfoProps {
 export const Offer = ({ offer }: OfferInfoProps) => {
   const { candidatesPostulates, loadingCandidatesPostulates } = useCandidatesPostulates({ idOferta: Number(offer.id_oferta) })
 
+  const formatDate = (isoString: string) => {
+    const date = new Date(isoString)
+    const day = String(date.getUTCDate()).padStart(2, '0')
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0')
+    const year = date.getUTCFullYear()
+
+    return `${day}/${month}/${year}`
+  }
+
   return (
     <article className='relative bg-secondary rounded-xl flex justify-between items-center pl-5 pr-20 pt-10 pb-[72px] gap-5 cursor-pointer hover:bg-secondary/70 transition-all duration-300 group'>
       <div className='flex items-center justify-start w-full gap-5'>
@@ -19,7 +28,7 @@ export const Offer = ({ offer }: OfferInfoProps) => {
           <span className='text-xl text-left font-bold text-ellipsis overflow-hidden whitespace-nowrap w-[370px]'>{offer.titulo}</span>
           <span className='text-ellipsis text-left overflow-hidden whitespace-nowrap w-[370px] -mt-1 font-semibold'>ACTUANDO SAS</span>
           <span className='text-ellipsis text-left overflow-hidden whitespace-nowrap w-[370px] -mt-1 mb-2'>{offer.ubicacion}</span>
-          <span className='text-sm text-left text-ellipsis overflow-hidden whitespace-nowrap w-[370px] italic font-semibold'>{offer.fecha_publicacion.toString()}</span>
+          <span className='text-sm text-left text-ellipsis overflow-hidden whitespace-nowrap w-[370px] italic font-semibold'>{formatDate(offer.fecha_publicacion.toString())}</span>
         </div>
       </div>
       <div className='flex items-end justify-end w-3/6 h-full'>
