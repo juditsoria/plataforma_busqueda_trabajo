@@ -19,15 +19,16 @@ interface Oferta {
 export function Ofertas () {
   const [ofertas, setOfertas] = useState<Oferta[]>([])
   const [error, setError] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
     const fetchOfertas = async () => {
       try {
+        setIsLoading(true)
         const response = await api.get('api/oferta')
-        console.log(response)
 
         if (response.status !== 200) {
-          throw new Error()
+          throw new Error('Error al cargar las ofertas')
         }
 
         const data = response.data
@@ -35,12 +36,14 @@ export function Ofertas () {
         if (Array.isArray(data)) {
           setOfertas(data)
         } else {
-          throw new Error()
+          throw new Error('Formato de datos incorrecto')
         }
       } catch (err: unknown) {
         if (err instanceof Error) {
           setError(err.message)
         }
+      } finally {
+        setIsLoading(false)
       }
     }
 
@@ -57,8 +60,13 @@ export function Ofertas () {
         <Button type="submit"><CiSearch /></Button>
       </div>
 
-     {error || ofertas.length === 0 ? (
-        <p className='text-center text-3xl text-gray-500'>No hay ofertas disponibles en este momento.</p>) : (
+      {isLoading ? (
+        <div className="text-center text-xl text-gray-500">Cargando ofertas...</div>
+      ) : error ? (
+        <p className='text-center text-3xl text-gray-500'>{error}</p>
+      ) : ofertas.length === 0 ? (
+        <p className='text-center text-3xl text-gray-500'>No hay ofertas disponibles en este momento.</p>
+      ) : (
         <ul>
           {ofertas.map((oferta) => (
             <article key={oferta.id_oferta} className='bg-secondary rounded-lg p-4'>
@@ -68,7 +76,7 @@ export function Ofertas () {
                     <div className='w-1/6'>
                       <img
                         className='w-full'
-                        src="https://media.magneto365.com/image_assets/files/100969/original-07667a75-eade-41d6-8663-8aced564738e-.png?Expires=1737935999&Key-Pair-Id=KYGE9B84R3EDO&Signature=tZ-Hd8gFCuX8hwQBCVTwBRYAY0BnlhKEvkbVm5OSUddRxBDty4pW6ZhRVUuUfpySRm33hdCPpscQbvAb6rPpcXx2s2ZIbu3LpVLIA~qMGs39SqbTayxobrKi3QzNSsElLWZgLkRaYYFtw4K7Q7HX5wycUdDCkIDPXJGkCM1WMxO9LAgQBNvYOdcVADp27vf6rcMG1Ye1R4L3TOFB1ZAQ1qzc5q~R2usZseaZt-cMnxLvivxPa7qw5fOMC3IDTEypd82X-1sFWA2pOuhRknVYNiEthp6yw4EeQ58IsZDP6XNVOdFr-LDKim6YSEhMuJvRurpDLrxPIkU-6BFJOlDbZQ__"
+                        src="https://media.magneto365.com/image_assets/files/100969/original-07667a75-eade-41d6-8663-8aced564738e-.png"
                         alt="Oferta"
                       />
                     </div>
@@ -94,7 +102,8 @@ export function Ofertas () {
               </div>
             </article>
           ))}
-        </ul>)}
+        </ul>
+      )}
     </div>
   )
 }
