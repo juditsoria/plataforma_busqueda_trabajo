@@ -29,6 +29,10 @@ DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8000',
+    # Añade aquí otros orígenes de confianza si es necesario
+]
 
 # Application definition
 
@@ -63,7 +67,7 @@ CORS_ALLOW_HEADERS = [
     "x-requested-with",
 ]
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # Frontend en React
+    "http://localhost:5173",
 ]
 
 CLOUDINARY_STORAGE = {
