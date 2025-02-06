@@ -6,7 +6,7 @@ export function NavBar () {
   const isActive = (path: string) => location.pathname === path ? 'bg-primary text-white' : 'hover:bg-[#B2B76F] hover:text-white'
 
   return (
-    <aside className="bg-secondary w-full rounded-lg overflow-hidden">
+    <aside className="bg-accent w-full rounded-lg overflow-hidden">
       <nav>
         <ul className="space-y-2">
           <li>
@@ -14,7 +14,7 @@ export function NavBar () {
               to="/admin"
               className={`block p-3 rounded-lg ${isActive('/admin')}`}
             >
-              Dashboard
+              Inicio
             </Link>
           </li>
           <li>
