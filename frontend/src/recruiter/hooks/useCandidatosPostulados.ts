@@ -14,7 +14,7 @@ export const useCandidatesPostulates = ({ idOferta }: { idOferta: number }) => {
         setLoadingCandidatesPostulates(true)
 
         const response = await axios.get('http://localhost:8000/aplicaciones/aplicaciones/')
-        const candidatesPostulatesOffer: Aplicacion[] = response.data.filter((c: Aplicacion) => c.id_oferta === idOferta)
+        const candidatesPostulatesOffer: Aplicacion[] = response.data.filter((c: Aplicacion) => c.oferta === idOferta)
 
         setCandidatesPostulates(candidatesPostulatesOffer)
       } catch (error) {
