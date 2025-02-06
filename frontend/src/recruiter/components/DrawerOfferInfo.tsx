@@ -10,6 +10,8 @@ import {
 import { Offer } from './Offer'
 import { type Offer as OfferType } from '../types/offer'
 import { ModalEditOfferForm } from './ModalEditForm'
+import { Link } from 'react-router-dom'
+import { useCandidatesPostulates } from '../hooks/useCandidatosPostulados'
 
 interface DrawerOfferInfoProps {
   offers: OfferType[]
@@ -18,6 +20,8 @@ interface DrawerOfferInfoProps {
 }
 
 export const DrawerOfferInfo = ({ offers, offer, setOffers }: DrawerOfferInfoProps) => {
+  const { candidatesPostulates, loadingCandidatesPostulates } = useCandidatesPostulates({ idOferta: Number(offer.id_oferta) })
+
   return (
     <Drawer>
       <DrawerTrigger asChild>
@@ -44,7 +48,9 @@ export const DrawerOfferInfo = ({ offers, offer, setOffers }: DrawerOfferInfoPro
                 <div className='flex items-center justify-between'>
                   <div className='flex items-center justify-center gap-2'>
                     <span className='italic font-semibold'>Postulados:</span>
-                    <span className='px-3 py-1 text-xl italic font-bold bg-white border border-primary rounded-xl'>100</span>
+                    <span className='px-3 py-1 text-xl italic font-bold bg-white border border-primary rounded-xl'>
+                      {loadingCandidatesPostulates ? '...' : candidatesPostulates.length}
+                    </span>
                   </div>
                   <div className='flex items-center justify-center gap-2'>
                     <span className='italic font-semibold'>Salario:</span>
@@ -60,12 +66,12 @@ export const DrawerOfferInfo = ({ offers, offer, setOffers }: DrawerOfferInfoPro
               offer={offer}
               setOffers={setOffers}
             />
-            <button className='flex items-center justify-center w-full gap-2 px-8 py-3 font-semibold text-white transition-all duration-300 rounded-md bg-primary hover:brightness-110'>
+            <Link to={`/recruiter/offer/${offer.id_oferta}`} className='flex items-center justify-center w-full gap-2 px-8 py-3 font-semibold text-white transition-all duration-300 rounded-md bg-primary hover:brightness-110'>
               <div className='text-2xl'>
                 <IoPaperPlane />
               </div>
               Visualizar candidatos
-            </button>
+            </Link>
             <DrawerClose asChild>
               <button className='flex items-center justify-center w-full gap-2 px-8 py-3 font-semibold transition-all duration-300 border rounded-md bg-background border-primary hover:bg-gray-100'>
                 Cancelar

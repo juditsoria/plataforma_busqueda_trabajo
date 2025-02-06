@@ -1,11 +1,14 @@
 import { IoIosArrowForward } from 'react-icons/io'
 import { type Offer as OfferType } from '../types/offer'
+import { useCandidatesPostulates } from '../hooks/useCandidatosPostulados'
 
 interface OfferInfoProps {
   offer: OfferType
 }
 
 export const Offer = ({ offer }: OfferInfoProps) => {
+  const { candidatesPostulates, loadingCandidatesPostulates } = useCandidatesPostulates({ idOferta: Number(offer.id_oferta) })
+
   return (
     <article className='relative bg-secondary rounded-xl flex justify-between items-center pl-5 pr-20 pt-10 pb-[72px] gap-5 cursor-pointer hover:bg-secondary/70 transition-all duration-300 group'>
       <div className='flex items-center justify-start w-full gap-5'>
@@ -27,7 +30,9 @@ export const Offer = ({ offer }: OfferInfoProps) => {
       </div>
       <div className='absolute flex items-center justify-center gap-2 bottom-4 left-6'>
         <span className='italic font-semibold'>Postulados:</span>
-        <span className='px-3 py-1 text-xl italic font-bold bg-white border border-primary rounded-xl'>100</span>
+        <span className='px-3 py-1 text-xl italic font-bold bg-white border border-primary rounded-xl'>
+          {loadingCandidatesPostulates ? '...' : candidatesPostulates.length}
+        </span>
       </div>
       <div className='absolute flex items-center justify-center gap-2 bottom-4 right-5'>
         <span className='italic font-semibold'>Salario:</span>
